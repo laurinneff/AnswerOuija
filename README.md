@@ -1,0 +1,1 @@
+This is a reddit bot that answers posts on [r/AskOuija](https://reddit.com/r/AskOuija)
