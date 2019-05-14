@@ -1,1 +1,1 @@
-This is a reddit bot that answers posts on [r/AskOuija](https://reddit.com/r/AskOuija)
+This is a reddit bot that answers posts from [r/AskOuija](https://reddit.com/r/AskOuija) on [r/AnswerOuija](https://reddit.com/r/AnswerOuija).
