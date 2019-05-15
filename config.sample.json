@@ -1,0 +1,9 @@
+{
+    "username": "AnswerOuija",
+    "password": "",
+    "app_id": "",
+    "app_secret": "",
+    "user_agent": "AnswerOuija v1.0.0",
+    "source_subreddit": "AskOuija",
+    "post_subreddit": "AnswerOuija"
+}
