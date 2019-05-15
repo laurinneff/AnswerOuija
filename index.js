@@ -1,4 +1,4 @@
-const request = require('request')
+const log = require('./log')
 const Snooper = require('reddit-snooper')
 
 const snooper = new Snooper(
@@ -15,27 +15,27 @@ const snooper = new Snooper(
 
 const fs = require('fs')
 
-console.log('loading words.txt...')
+log('loading words.txt...')
 var wordsRaw = fs.readFileSync('words.txt').toString()
 const words = wordsRaw.split('\n')
 delete wordsRaw
-console.log('words.txt loaded')
+log('words.txt loaded')
 
-console.log('Waiting for posts...')
+log('Waiting for posts...')
 snooper.watcher.getPostWatcher('AskOuija')
     .on('post', function (post) { // post will be a json object containing all post information
-        console.log('got a post')
+        log('got a post')
         const data = post.data
-        console.log(data.url)
+        log(data.url)
         const title = data.title
-        console.log(title)
+        log(title)
         if (/_+/.test(title)) {
-            console.log('title contains underscores')
+            log('title contains underscores')
             const word = words[Math.floor(Math.random() * (words.length - 1)) + 1];
-            console.log('inserting', word)
+            log('inserting', word)
             const newTitle = title.replace(/_+/, word);
-            console.log(newTitle)
-            console.log('submitting post')
+            log(newTitle)
+            log('submitting post')
             snooper.api.post("/api/submit", {
                 api_type: "json",
                 title: newTitle,
@@ -45,16 +45,16 @@ snooper.watcher.getPostWatcher('AskOuija')
                 sr: 'AnswerOuija',
             }, function (err, statusCode, data) {
                 if (!err) {
-                    console.log('post submitted')
-                    console.log(data)
+                    log('post submitted')
+                    log(data)
                 }
             })
         }
         else {
-            console.log('title doesn\'t contain underscores')
+            log('title doesn\'t contain underscores')
             const word = words[Math.floor(Math.random() * (words.length - 1)) + 1];
-            console.log('AnswerOuija says:', word)
-            console.log('submitting post')
+            log('AnswerOuija says:', word)
+            log('submitting post')
             snooper.api.post("/api/submit", {
                 api_type: "json",
                 title: `AnswerOuija says ${word}`,
@@ -64,8 +64,8 @@ snooper.watcher.getPostWatcher('AskOuija')
                 sr: 'AnswerOuija',
             }, function (err, statusCode, data) {
                 if (!err) {
-                    console.log('post submitted')
-                    console.log(data)
+                    log('post submitted')
+                    log(data)
                 }
             })
         }
